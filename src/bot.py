@@ -20,7 +20,7 @@ intents = Intents.default()
 intents.members = True
 intents.message_content = True
 #client = discord.Client(intents=intents)
-bot = commands.Bot(command_prefix='!',intents=intents)
+bot = commands.Bot(command_prefix='?',intents=intents)
 
 @bot.event
 async def on_ready():
@@ -45,7 +45,7 @@ async def chifoumi(ctx):
     except asyncio.TimeoutError:
         await ctx.send("Temps écoulé, la partie est annulée.")    
 
-@bot.command(name='roll', help='Lance un dès ! Utilisez !roll XdY, où X est le nombre de dés et Y est le nombre de faces.')
+@bot.command(name='roll', help='Lance un dès ! Utilisez ?roll XdY, où X est le nombre de dés et Y est le nombre de faces.')
 async def roll(ctx, dice: str):
     if dice.count('d') == 1:
         number_of_dice, number_of_sides = dice.split('d')
@@ -89,8 +89,7 @@ async def on_message(message):
             response = random.choice(speaker.sortileges)
             await message.channel.send(response)
         elif message.content == 'error':
-            raise discord.DiscordException
-    
+            raise discord.DiscordException   
     
 @bot.event
 async def on_error(event, *args, **kwargs):
