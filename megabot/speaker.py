@@ -4,14 +4,10 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-LOVE_QUOTES = os.getenv("LOVE_QUOTES").split(",")
-
-loveQuotes = [
-    LOVE_QUOTES,
-    "Megabot vous aime aussi !",
-]
+SORTILEGES = os.getenv("SORTILEGES").split(",")
 
 sortileges = [
+    SORTILEGES,
     "☄️ Ich narova glaturto spalovar chapopu ☄️",
     "❄️ Chlagagla ! ❄️",
     "🔥 Clatori chagoplapipouf chimana 🔥",

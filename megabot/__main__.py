@@ -14,7 +14,7 @@ from discord.ext import commands
 
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
-PRIVATE_GUILD = os.getenv("PRIVATE_GUILD")
+PRIVATE_GUILDS = os.getenv("PRIVATE_GUILDS")
 
 intents = Intents.default()
 intents.members = True
@@ -112,10 +112,9 @@ async def on_message(message):
     if message.content.startswith("?"):
         await bot.process_commands(message)
     else:
-        if message.guild and message.guild.name == PRIVATE_GUILD:
-            if "aime" in message.content:
-                response = random.choice(speaker.loveQuotes)
-                await message.channel.send(response)
+        if message.guild and message.guild.name in PRIVATE_GUILDS:
+            if "megabot test" in message.content:
+                await message.channel.send('bot response test')
         if "un sort" in message.content:
             response = random.choice(speaker.sortileges)
             await message.channel.send(response)
