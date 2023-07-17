@@ -7,6 +7,7 @@ WORKDIR /code
 
 # copy the python package to the working directory
 COPY megabot/ megabot/
+COPY pyproject.toml .
 
 # install the megabot package
 RUN pip install .
