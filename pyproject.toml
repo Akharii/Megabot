@@ -1,0 +1,34 @@
+[build-system]
+requires = [
+    "setuptools", "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "megabot"
+version = "0.1.0"
+description = "The NEP discord bot"
+readme = "README.md"
+authors = [{name = "Akharii", email = "akharii.nep@gmail.com"},
+           {name = "NiziL", email = "biasutto.t@gmail.com"}]
+license = {file = "LICENSE"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Topic :: Communications :: Chat",
+
+]
+keywords = ["discord", "bot"]
+dependencies = [
+    "discord.py >= 2.3.1",
+    "boardgamegeek2 >= 1.0.1",
+    "python-dotenv >= 1.0.0",
+    "requests-cache == 0.4.4"
+]
+requires-python = ">= 3.9"
+
+[project.optional-dependencies]
+lint = ["black", "flake8"]
+
+[project.urls]
+GitHub = "https://github.com/Akharii/Megabot"
+

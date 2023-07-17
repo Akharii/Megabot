@@ -5,14 +5,12 @@ FROM python:3
 # set the working directory in the container
 WORKDIR /code
 
-# copy the dependencies file to the working directory
-COPY requirements.txt .
+# copy the python package to the working directory
+COPY megabot/ megabot/
+COPY pyproject.toml .
 
-# install dependencies
-RUN pip install -r requirements.txt
-
-# copy the content of the local src directory to the working directory
-COPY src/ .
+# install the megabot package
+RUN pip install .
 
 # command to run on container start
-CMD [ "python", "./bot.py" ]
+CMD [ "python", "-m", "megabot" ]
