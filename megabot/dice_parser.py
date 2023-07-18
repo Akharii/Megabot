@@ -4,7 +4,8 @@ import random
 from textx import metamodel_from_str
 
 
-grammar = """
+__metamodel = metamodel_from_str(
+    """
 RollCommand:
     'roll' expr=DiceExpr 
 ;
@@ -29,11 +30,10 @@ Operator:
     '+' | '-'
 ;
 """
+)
 
-__metamodel = metamodel_from_str(grammar)
 
-
-def compute_roll_value(roll):
+def compute_roll_value(roll: str) -> list[int]:
     return __eval_expr(__metamodel.model_from_str(roll).expr)
 
 
