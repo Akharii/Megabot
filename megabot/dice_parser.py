@@ -71,8 +71,7 @@ if __name__ == "__main__":
 
     def __test(command):
         print(f"TEST {command}")
-        test = __metamodel.model_from_str(command)
-        print(compute_roll_value(test))
+        print(compute_roll_value(command))
 
     __test("roll 2d6")
     __test("roll 2d6+2")
