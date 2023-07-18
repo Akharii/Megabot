@@ -22,7 +22,8 @@ dependencies = [
     "discord.py >= 2.3.1",
     "boardgamegeek2 >= 1.0.1",
     "python-dotenv >= 1.0.0",
-    "requests-cache == 0.4.4"
+    "requests-cache == 0.4.4",
+    "textX >= 3.1.1"
 ]
 requires-python = ">= 3.9"
 
