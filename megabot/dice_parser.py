@@ -38,7 +38,7 @@ ConditionalOperator:
 
 
 def compute_roll_value(roll: str) -> list[int]:
-    return __eval_expr(__metamodel.model_from_str(roll).expr)
+    return __eval_expr(__metamodel.model_from_str(roll))
 
 
 def __eval_expr(expr):
@@ -80,16 +80,14 @@ def __eval_expr(expr):
         case "RollCommand":
             result = __eval_expr(expr.expr)
             if expr.cop == "<":
-                result = [e < int(expr.value) for e in result]
+                [e for e in result if e < int(expr.value)]
             elif expr.cop == ">":
-                result = [e > int(expr.value) for e in result]
-                #print(f"case > result: {result}")
+                result = [e for e in result if e > int(expr.value)]
             elif expr.cop == "<=":
-                result = [e <= int(expr.value) for e in result]
+                result = [e for e in result if e <= int(expr.value)]
             elif expr.cop == ">=":
-                result = [e >= int(expr.value) for e in result]
-            else:
-                return result
+                result = [e for e in result if e >= int(expr.value)]
+            return result
 
 if __name__ == "__main__":
 
