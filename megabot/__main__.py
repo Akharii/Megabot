@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from discord import Intents
 from .chifoumi import on_message as chifoumi_on_message
 from .bgg import on_message as bgg_on_message
+from .diceRoll import evaluate_dice_expression
 from discord.ext import commands
 
 
@@ -66,23 +67,9 @@ async def chifoumi(ctx):
     " et Y est le nombre de faces.",
 )
 async def roll(ctx, dice: str):
-    if dice.count("d") == 1:
-        number_of_dice, number_of_sides = dice.split("d")
-        try:
-            number_of_dice = int(number_of_dice)
-            number_of_sides = int(number_of_sides)
-        except ValueError:
-            await ctx.send(
-                "Format de dés invalide. Utilisez le format `!XdY`,"
-                " où X est le nombre de dés"
-                " et Y est le nombre de faces."
-            )
-            return
-    dice = [
-        str(random.choice(range(1, number_of_sides + 1)))
-        for _ in range(number_of_dice)
-    ]
-    await ctx.send(", ".join(dice))
+    ctx.send(f"string parameter : {dice}")
+    result = evaluate_dice_expression(dice)
+    await ctx.send(result)
 
 
 @bot.command(name="bgg", help="en cours de dev, utilisation de boardgamegeek")
@@ -114,7 +101,7 @@ async def on_message(message):
     else:
         if message.guild and message.guild.name in PRIVATE_GUILDS:
             if "megabot test" in message.content:
-                await message.channel.send('bot response test')
+                await message.channel.send('bot response test ACR4')
         if "un sort" in message.content:
             response = random.choice(speaker.sortileges)
             await message.channel.send(response)

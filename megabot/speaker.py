@@ -14,4 +14,5 @@ sortileges = [
     "🌪 Iz no qutchapoilu ratofu fourapin cataglae glopoïr 🌪",
     "⚡️ Calaminochu carl zafo furmanich ip glore stou kopch troa fra koulamifaq ⚡️",
     "💥 Chakeplikoum ! 💥",
+    "🐙 Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn 🐙",
 ]
