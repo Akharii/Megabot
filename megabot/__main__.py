@@ -66,10 +66,10 @@ async def chifoumi(ctx):
     " où X est le nombre de dés"
     " et Y est le nombre de faces.",
 )
-async def roll(ctx, dice_cmd: str):
+async def roll(ctx, *, dice_cmd: str):
     try:
         values = compute_roll_value("roll " + dice_cmd)
-        await ctx.send(", ".join(values))
+        await ctx.send(", ".join(map(str, values)))
     except TextXSyntaxError as e:
         await ctx.send("You dumb, don't even know how to roll !\n" + e.message)
 
