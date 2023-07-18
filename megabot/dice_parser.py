@@ -7,7 +7,7 @@ from textx import metamodel_from_str
 __metamodel = metamodel_from_str(
     """
 RollCommand:
-    'roll' expr=DiceExpr 
+    'roll' expr=DiceExpr (cop=ConditionalOperator value=/[0-9]+/)? 
 ;
 
 DiceExpr: 
@@ -27,7 +27,11 @@ Dice:
 ;
 
 Operator: 
-    '+' | '-'
+    '+' | '-' | '*' | '/' | 'mod'
+;
+
+ConditionalOperator:
+    '<' | '>' | '>=' | '<='
 ;
 """
 )
@@ -38,6 +42,7 @@ def compute_roll_value(roll: str) -> list[int]:
 
 
 def __eval_expr(expr):
+    #print(f" math: {expr.__class__.__name__}")
     match expr.__class__.__name__:
         case "DiceExpr":
             result = __eval_expr(expr.expr)
@@ -45,6 +50,12 @@ def __eval_expr(expr):
                 result = [e + int(expr.value) for e in result]
             elif expr.op == "-":
                 result = [e - int(expr.value) for e in result]
+            elif expr.op == "*":
+                result = [e * int(expr.value) for e in result]
+            elif expr.op == "/":
+                result = [e / int(expr.value) for e in result]
+            elif expr.op == "mod":
+                result = [e % int(expr.value) for e in result]
             return result
 
         case "Dice":
@@ -66,6 +77,19 @@ def __eval_expr(expr):
             elif expr.name == "min":
                 return [min(params)]
 
+        case "RollCommand":
+            result = __eval_expr(expr.expr)
+            if expr.cop == "<":
+                result = [e < int(expr.value) for e in result]
+            elif expr.cop == ">":
+                result = [e > int(expr.value) for e in result]
+                #print(f"case > result: {result}")
+            elif expr.cop == "<=":
+                result = [e <= int(expr.value) for e in result]
+            elif expr.cop == ">=":
+                result = [e >= int(expr.value) for e in result]
+            else:
+                return result
 
 if __name__ == "__main__":
 
