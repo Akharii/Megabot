@@ -78,3 +78,4 @@ if __name__ == "__main__":
     __test("roll sort(12d6)+2")
     __test("roll sum(2d6 4d4)")
     __test("roll sort(sum(2d6) max(2d5)+2)-1")
+    __test("roll 3d")
