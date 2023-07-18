@@ -69,7 +69,7 @@ async def chifoumi(ctx):
 async def roll(ctx, dice_cmd: str):
     try:
         values = compute_roll_value("roll " + dice_cmd)
-        await ctx.send(", ".join(list(map(str, values))))
+        await ctx.send(", ".join(map(str, values)))
     except TextXSyntaxError as e:
         await ctx.send("You dumb, don't even know how to roll !\n" + e.message)
 
