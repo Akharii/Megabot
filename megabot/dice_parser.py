@@ -15,7 +15,7 @@ DiceExpr:
 ;
 
 FunctionCall:
-    name=FunctionName '(' params*=DiceExpr ')'
+    name=FunctionName '(' params+=DiceExpr ')'
 ;
 
 FunctionName:
